@@ -1,0 +1,73 @@
+[gd_scene load_steps=10 format=3 uid="uid://c7moi2viy6jxx"]
+
+[ext_resource type="Texture2D" uid="uid://4nl4kwm7ahh7" path="res://assets/sprites/slime_purple.png" id="1_ahcl5"]
+[ext_resource type="Script" uid="uid://dcjg1njqbrepi" path="res://scripts/slime_2.gd" id="1_kqw1s"]
+[ext_resource type="PackedScene" uid="uid://dsl5nqysvkwrx" path="res://scenes/deathzone.tscn" id="2_kqw1s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h4nbw"]
+size = Vector2(10, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sga2r"]
+atlas = ExtResource("1_ahcl5")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ffthq"]
+atlas = ExtResource("1_ahcl5")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_trgag"]
+atlas = ExtResource("1_ahcl5")
+region = Rect2(48, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xpgi4"]
+atlas = ExtResource("1_ahcl5")
+region = Rect2(72, 24, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nnca1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sga2r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ffthq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_trgag")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xpgi4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="Slime2" type="CharacterBody2D"]
+script = ExtResource("1_kqw1s")
+
+[node name="Deathzone" parent="." instance=ExtResource("2_kqw1s")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Deathzone"]
+position = Vector2(0, 4.5)
+shape = SubResource("RectangleShape2D_h4nbw")
+
+[node name="RayCastRight" type="RayCast2D" parent="."]
+position = Vector2(0, 5)
+target_position = Vector2(10, 0)
+collision_mask = 9
+
+[node name="RayCastLeft" type="RayCast2D" parent="."]
+position = Vector2(0, 5)
+target_position = Vector2(-9, 0)
+collision_mask = 9
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_nnca1")
+autoplay = "default"
+frame = 3
+frame_progress = 0.42542413
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4.5)
+shape = SubResource("RectangleShape2D_h4nbw")

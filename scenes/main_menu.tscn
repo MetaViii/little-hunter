@@ -1,0 +1,61 @@
+[gd_scene load_steps=4 format=3 uid="uid://bsns7ct5t0f7j"]
+
+[ext_resource type="Script" uid="uid://cii28boh03eq5" path="res://scripts/main_menu.gd" id="1_l6cm7"]
+[ext_resource type="Texture2D" uid="uid://cuvminskrawtv" path="res://assets/sprites/1758985898509.png" id="2_bqqt6"]
+[ext_resource type="FontFile" uid="uid://b5bbxj64blsvk" path="res://assets/fonts/zihun.ttf" id="3_bqqt6"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_l6cm7")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 4.0
+offset_top = -11.0
+offset_right = 1151.0
+offset_bottom = 694.0
+texture = ExtResource("2_bqqt6")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
+offset_left = 471.0
+offset_top = 220.0
+offset_right = 566.0
+offset_bottom = 353.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Button1" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+clip_text = true
+
+[node name="Button2" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Button3" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Button4" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 380.0
+offset_top = 80.0
+offset_right = 785.0
+offset_bottom = 168.0
+theme_override_colors/font_color = Color(0.9489749, 0, 0.29165164, 1)
+theme_override_fonts/font = ExtResource("3_bqqt6")
+theme_override_font_sizes/font_size = 50
+text = "little hunter"
+horizontal_alignment = 1
+vertical_alignment = 1

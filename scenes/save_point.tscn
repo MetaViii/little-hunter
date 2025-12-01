@@ -1,0 +1,86 @@
+[gd_scene load_steps=10 format=3 uid="uid://f0lug1qcq1ne"]
+
+[ext_resource type="Script" uid="uid://blbt2uxgfjbvn" path="res://scripts/save_point.gd" id="1_xvfwu"]
+[ext_resource type="Texture2D" uid="uid://7nq23k3msit2" path="res://assets/sprites/TX Props.png" id="2_wiums"]
+[ext_resource type="FontFile" uid="uid://cha55122fjg1m" path="res://assets/fonts/PixelOperator8.ttf" id="3_wiums"]
+[ext_resource type="AudioStream" uid="uid://cnrxkyx32w81j" path="res://assets/sounds/power_up.wav" id="4_n0rt3"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_n0rt3"]
+font = ExtResource("3_wiums")
+font_size = 8
+
+[sub_resource type="Gradient" id="Gradient_wiums"]
+offsets = PackedFloat32Array(0, 0.77678573, 1)
+colors = PackedColorArray(0.9805874, 0.74992317, 7.70092e-07, 1, 0.81640583, 0.30711895, 3.85046e-07, 1, 0.56906366, 0, 0.18463096, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_n0rt3"]
+gradient = SubResource("Gradient_wiums")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_q203c"]
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 76.39
+initial_velocity_max = 76.39
+gravity = Vector3(0, 49, 0)
+damping_min = 80.208
+damping_max = 80.208
+scale_min = 1.8
+scale_max = 2.3
+color_ramp = SubResource("GradientTexture1D_n0rt3")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n0rt3"]
+size = Vector2(32, 70)
+
+[node name="SavePoint" type="Area2D"]
+scale = Vector2(0.5, 0.5)
+collision_mask = 2
+script = ExtResource("1_xvfwu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_wiums")
+region_enabled = true
+region_rect = Rect2(445, 21, 37, 72)
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = -40.0
+offset_top = -68.0
+offset_right = 41.0
+offset_bottom = -45.0
+text = "'F' to Save Your Data"
+label_settings = SubResource("LabelSettings_n0rt3")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="spark-r" type="GPUParticles2D" parent="."]
+position = Vector2(26, -26)
+scale = Vector2(0.8582041, 1)
+emitting = false
+amount = 250
+one_shot = true
+local_coords = true
+trail_lifetime = 0.01
+process_material = SubResource("ParticleProcessMaterial_q203c")
+
+[node name="spark-l" type="GPUParticles2D" parent="."]
+position = Vector2(-26, -26)
+scale = Vector2(0.8582041, 1)
+emitting = false
+amount = 250
+one_shot = true
+local_coords = true
+trail_lifetime = 0.01
+process_material = SubResource("ParticleProcessMaterial_q203c")
+
+[node name="saved_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_n0rt3")
+volume_db = -10.914
+bus = &"SFX"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_n0rt3")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
